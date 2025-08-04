@@ -26,7 +26,7 @@ const Home = () => {
       color: 'bg-green-500'
     },
     {
-      title: 'Contact Directory',
+      title: 'Contacts',
       description: 'Important contact numbers and emergency services',
       icon: PhoneIcon,
       path: '/contacts',

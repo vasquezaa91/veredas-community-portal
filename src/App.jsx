@@ -28,12 +28,12 @@ const AIAssistantPage = () => {
   const { sendMessage, testConnection, isLoading, isConfigured } = useAzureAI()
 
   const quickQuestions = [
-    "¿Cuáles son los horarios de la piscina?",
-    "¿Cómo reservo el salón social?",
+    "¿Cómo reservo el rancho?",
     "¿Cuáles son las reglas sobre mascotas?",
     "¿Cuándo es la próxima reunión de la junta?",
     "¿A quién contacto para problemas de mantenimiento?",
-    "¿Qué amenidades están disponibles?"
+    "¿Qué amenidades están disponibles?",
+    "¿Qué días recogen la basura?",
   ]
 
   const handleSendMessage = async (message = inputMessage) => {
@@ -67,7 +67,7 @@ const AIAssistantPage = () => {
       const errorMessage = {
         id: messages.length + 2,
         type: 'assistant',
-        content: 'Me disculpo, pero estoy experimentando dificultades técnicas. Por favor intenta más tarde o contacta la oficina del condominio para asistencia.',
+        content: 'Me disculpo, pero estoy experimentando dificultades técnicas. Por favor intenta más tarde o contacta la junta directiva del condominio para asistencia.',
         timestamp: new Date().toLocaleTimeString(),
         source: 'error',
         isError: true
@@ -298,27 +298,6 @@ const AIAssistantPage = () => {
       <p style={{ fontSize: '0.8rem', color: '#6b7280', marginTop: '0.5rem', textAlign: 'center' }}>
         Presiona Enter para enviar, Shift+Enter para nueva línea
       </p>
-
-      {/* Integration Info */}
-      <div style={{ marginTop: '2rem', backgroundColor: '#f9fafb', borderRadius: '8px', padding: '1.5rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: 'bold', marginBottom: '1rem', color: '#374151' }}>
-          Estado de Integración de IA
-        </h3>
-        <div style={{ fontSize: '0.9rem', color: '#6b7280', lineHeight: '1.6' }}>
-          <p style={{ marginBottom: '0.5rem' }}>
-            <strong>✅ Estado:</strong> Conectado al Agente de IA
-          </p>
-          <p style={{ marginBottom: '0.5rem' }}>
-            <strong>🔗 ID del Agente:</strong> asst_nqpsnLPXFRSBwc9HlnO60hlb
-          </p>
-          <p style={{ marginBottom: '0.5rem' }}>
-            <strong>🚀 Características:</strong> Chat en tiempo real, contexto comunitario, respuestas de respaldo
-          </p>
-          <p style={{ margin: 0 }}>
-            <strong>🎯 Especialización:</strong> Asistencia del Condominio Veredas del Cedro (reglas, amenidades, contactos, eventos)
-          </p>
-        </div>
-      </div>
     </div>
   )
 }
@@ -412,51 +391,159 @@ function App() {
         return (
           <div style={{
             backgroundColor: 'white',
-            borderRadius: '8px',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-            padding: '2rem',
-            marginBottom: '2rem'
+            borderRadius: '12px',
+            boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+            padding: '3rem 2rem',
+            marginBottom: '2rem',
+            border: '1px solid #f3f4f6'
           }}>
-            <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#1f2937' }}>
-              ¡Bienvenido al Condominio Veredas del Cedro!
-            </h2>
-            <p style={{ color: '#6b7280', marginBottom: '2rem' }}>
-              Tu portal del condominio para acceder a reglas, protocolos, contactos y más.
-            </p>
+            {/* Welcome Header */}
+            <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+              <h2 style={{ 
+                fontSize: '2.5rem', 
+                fontWeight: '700', 
+                marginBottom: '1rem', 
+                color: '#111827',
+                letterSpacing: '-0.025em'
+              }}>
+                Bienvenido a Veredas del Cedro
+              </h2>
+              <p style={{ 
+                color: '#6b7280', 
+                fontSize: '1.125rem',
+                lineHeight: '1.7',
+                maxWidth: '600px',
+                margin: '0 auto'
+              }}>
+                Tu portal del condominio para acceder a información, servicios y recursos importantes.
+              </p>
+            </div>
             
+            {/* Modern Menu Grid */}
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-              gap: '1rem'
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '1.5rem',
+              marginBottom: '3rem'
             }}>
               {navigation.slice(1).map((item, index) => (
                 <div 
                   key={item.id} 
                   style={{
-                    backgroundColor: cardColors[index] + '10',
-                    border: `1px solid ${cardColors[index]}30`,
-                    borderRadius: '8px',
-                    padding: '1.5rem',
+                    backgroundColor: '#fafafa',
+                    border: '1px solid #f3f4f6',
+                    borderRadius: '12px',
+                    padding: '2rem',
                     cursor: 'pointer',
-                    transition: 'transform 0.2s'
+                    transition: 'all 0.2s ease',
+                    position: 'relative',
+                    overflow: 'hidden'
                   }}
-                  onMouseEnter={(e) => e.target.style.transform = 'scale(1.02)'}
-                  onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                  onMouseEnter={(e) => {
+                    e.target.style.transform = 'translateY(-2px)'
+                    e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)'
+                    e.target.style.borderColor = '#e5e7eb'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.transform = 'translateY(0)'
+                    e.target.style.boxShadow = 'none'
+                    e.target.style.borderColor = '#f3f4f6'
+                  }}
                   onClick={() => setCurrentPage(item.id)}
                 >
+                  {/* Minimal Icon */}
+                  <div style={{
+                    width: '48px',
+                    height: '48px',
+                    backgroundColor: '#f9fafb',
+                    borderRadius: '10px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '1.5rem',
+                    border: '1px solid #f3f4f6'
+                  }}>
+                    <span style={{ fontSize: '1.5rem' }}>
+                      {index === 0 ? '📋' : index === 1 ? '🛡️' : index === 2 ? '📞' : index === 3 ? '🏢' : '🤖'}
+                    </span>
+                  </div>
+                  
+                  {/* Content */}
                   <h3 style={{ 
-                    fontWeight: 'bold', 
-                    color: cardColors[index],
-                    marginBottom: '0.5rem',
-                    fontSize: '1.1rem'
+                    fontWeight: '600', 
+                    color: '#111827',
+                    marginBottom: '0.75rem',
+                    fontSize: '1.125rem',
+                    lineHeight: '1.5'
                   }}>
                     {item.title}
                   </h3>
-                  <p style={{ color: '#6b7280', fontSize: '0.9rem' }}>
+                  <p style={{ 
+                    color: '#6b7280', 
+                    fontSize: '0.875rem',
+                    lineHeight: '1.6',
+                    margin: 0
+                  }}>
                     {item.desc}
                   </p>
+                  
+                  {/* Subtle Arrow */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '1.5rem',
+                    right: '1.5rem',
+                    color: '#d1d5db',
+                    fontSize: '1.25rem'
+                  }}>
+                    →
+                  </div>
                 </div>
               ))}
+            </div>
+
+            {/* Minimalist Info Section */}
+            <div style={{
+              backgroundColor: '#f9fafb',
+              borderRadius: '12px',
+              padding: '2rem',
+              border: '1px solid #f3f4f6'
+            }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: '1rem'
+              }}>
+                <div>
+                  <h3 style={{
+                    fontSize: '1.125rem',
+                    fontWeight: '600',
+                    color: '#111827',
+                    margin: '0 0 0.5rem 0'
+                  }}>
+                    Contacto de Emergencia
+                  </h3>
+                  <p style={{
+                    color: '#6b7280',
+                    fontSize: '0.875rem',
+                    margin: 0
+                  }}>
+                    Bomberos/Policía/Médicos: <strong>911</strong> • Seguridad: <strong>(555) 123-4569</strong>
+                  </p>
+                </div>
+                <div style={{
+                  width: '40px',
+                  height: '40px',
+                  backgroundColor: '#fee2e2',
+                  borderRadius: '10px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  <span style={{ fontSize: '1.25rem' }}>🚨</span>
+                </div>
+              </div>
             </div>
           </div>
         )
