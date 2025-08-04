@@ -31,12 +31,10 @@ A comprehensive React application for gated community residents to access import
 ## Tech Stack
 
 - **Frontend**: React 18 with Vite
-- **Routing**: React Router DOM
-- **Styling**: Tailwind CSS
+- **Styling**: Inline styles (modern minimalist design)
 - **Icons**: Heroicons React
-- **Calendar**: React Big Calendar
-- **Date Utilities**: date-fns
-- **Development**: ESLint, PostCSS, Autoprefixer
+- **AI Integration**: Azure AI service ready
+- **Development**: ESLint
 
 ## Getting Started
 
@@ -76,28 +74,18 @@ A comprehensive React application for gated community residents to access import
 
 ```
 src/
-├── components/
-│   └── Navbar.jsx          # Main navigation component
-├── pages/
-│   ├── Home.jsx            # Welcome page with quick links
-│   ├── Rules.jsx           # Community rules and regulations
-│   ├── Protocols.jsx       # Safety and emergency procedures
-│   ├── Contacts.jsx        # Contact directory
-│   ├── GeneralInfo.jsx     # Community information and amenities
-│   ├── Events.jsx          # Events calendar and activities
-│   ├── Bookings.jsx        # Facility booking system
-│   └── AiAssistant.jsx     # AI assistant interface
-├── data/                   # Static data and configurations
-├── App.jsx                 # Main application component
-├── App.css                 # Global styles and Tailwind imports
+├── services/
+│   └── azureAI.js          # Azure AI service integration
+├── App.jsx                 # Main application component with all pages inline
 └── main.jsx               # Application entry point
 ```
 
 ## Key Components
 
-### Navigation
-- Responsive navbar with mobile menu
-- Active page highlighting
+### Application Structure
+- Single-page application with state-based navigation
+- All page content defined inline in App.jsx
+- Modern minimalist UI with inline styles
 - Community branding
 
 ### Home Dashboard
