@@ -15,7 +15,7 @@ styles.textContent = `
 document.head.appendChild(styles)
 
 // AI Assistant Chat Component
-const AIAssistantPage = () => {
+const AIAssistantPage = ({ windowWidth }) => {
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -84,9 +84,9 @@ const AIAssistantPage = () => {
   }
 
   return (
-    <div style={{ backgroundColor: 'white', borderRadius: '8px', padding: '2rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
+    <div style={{ backgroundColor: 'white', borderRadius: '8px', padding: windowWidth < 640 ? '1.5rem' : '2rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
       <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-        <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#1f2937' }}>
+        <h2 style={{ fontSize: windowWidth < 640 ? '1.75rem' : '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#1f2937' }}>
           🤖 Asistente AI del Condominio
         </h2>
         <p style={{ color: '#6b7280' }}>
@@ -141,7 +141,11 @@ const AIAssistantPage = () => {
         <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#374151' }}>
           💡 Preguntas Rápidas
         </h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '0.5rem' }}>
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: windowWidth < 640 ? '1fr' : 'repeat(auto-fit, minmax(250px, 1fr))', 
+          gap: windowWidth < 640 ? '0.75rem' : '0.5rem' 
+        }}>
           {quickQuestions.map((question, index) => (
             <button
               key={index}
@@ -304,6 +308,22 @@ const AIAssistantPage = () => {
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home')
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024)
+
+  // Handle window resize for responsive behavior
+  React.useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth)
+      // Close mobile menu when switching to desktop view
+      if (window.innerWidth >= 768) {
+        setIsMobileMenuOpen(false)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const navigation = [
     { id: 'home', title: 'Inicio', desc: 'Resumen del condominio' },
@@ -319,11 +339,11 @@ function App() {
   const renderPage = () => {
     switch(currentPage) {
       case 'ai-assistant':
-        return <AIAssistantPage />
+        return <AIAssistantPage windowWidth={windowWidth} />
       case 'rules':
         return (
-          <div style={{ backgroundColor: 'white', borderRadius: '8px', padding: '2rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
-            <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#1f2937' }}>
+          <div style={{ backgroundColor: 'white', borderRadius: '8px', padding: windowWidth < 640 ? '1.5rem' : '2rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
+            <h2 style={{ fontSize: windowWidth < 640 ? '1.75rem' : '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#1f2937' }}>
               📋 Reglas y Reglamentos del Condominio
             </h2>
             <div style={{ color: '#6b7280', lineHeight: '1.6' }}>
@@ -346,8 +366,8 @@ function App() {
         )
       case 'protocols':
         return (
-          <div style={{ backgroundColor: 'white', borderRadius: '8px', padding: '2rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
-            <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#1f2937' }}>
+          <div style={{ backgroundColor: 'white', borderRadius: '8px', padding: windowWidth < 640 ? '1.5rem' : '2rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
+            <h2 style={{ fontSize: windowWidth < 640 ? '1.75rem' : '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#1f2937' }}>
               🛡️ Protocolos de Seguridad
             </h2>
             <div style={{ color: '#6b7280', lineHeight: '1.6' }}>
@@ -367,11 +387,15 @@ function App() {
         )
       case 'contacts':
         return (
-          <div style={{ backgroundColor: 'white', borderRadius: '8px', padding: '2rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
-            <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#1f2937' }}>
+          <div style={{ backgroundColor: 'white', borderRadius: '8px', padding: windowWidth < 640 ? '1.5rem' : '2rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
+            <h2 style={{ fontSize: windowWidth < 640 ? '1.75rem' : '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#1f2937' }}>
               📞 Directorio de Contactos
             </h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: windowWidth < 640 ? '1fr' : 'repeat(auto-fit, minmax(250px, 1fr))', 
+              gap: windowWidth < 640 ? '1rem' : '1rem' 
+            }}>
               {[
                 { title: 'Oficina del Condominio', phone: '(555) 123-4568', hours: 'Lun-Vie 9AM-5PM' },
                 { title: 'Seguridad de Emergencia', phone: '(555) 123-4569', hours: '24/7' },
@@ -393,14 +417,14 @@ function App() {
             backgroundColor: 'white',
             borderRadius: '12px',
             boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
-            padding: '3rem 2rem',
+            padding: windowWidth < 640 ? '2rem 1.5rem' : '3rem 2rem',
             marginBottom: '2rem',
             border: '1px solid #f3f4f6'
           }}>
             {/* Welcome Header */}
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
               <h2 style={{ 
-                fontSize: '2.5rem', 
+                fontSize: windowWidth < 640 ? '2rem' : windowWidth < 768 ? '2.25rem' : '2.5rem', 
                 fontWeight: '700', 
                 marginBottom: '1rem', 
                 color: '#111827',
@@ -410,7 +434,7 @@ function App() {
               </h2>
               <p style={{ 
                 color: '#6b7280', 
-                fontSize: '1.125rem',
+                fontSize: windowWidth < 640 ? '1rem' : '1.125rem',
                 lineHeight: '1.7',
                 maxWidth: '600px',
                 margin: '0 auto'
@@ -422,8 +446,8 @@ function App() {
             {/* Modern Menu Grid */}
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '1.5rem',
+              gridTemplateColumns: windowWidth < 640 ? '1fr' : windowWidth < 768 ? 'repeat(auto-fit, minmax(240px, 1fr))' : 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: windowWidth < 640 ? '1rem' : '1.5rem',
               marginBottom: '3rem'
             }}>
               {navigation.slice(1).map((item, index) => (
@@ -433,7 +457,7 @@ function App() {
                     backgroundColor: '#fafafa',
                     border: '1px solid #f3f4f6',
                     borderRadius: '12px',
-                    padding: '2rem',
+                    padding: windowWidth < 640 ? '1.5rem' : '2rem',
                     cursor: 'pointer',
                     transition: 'all 0.2s ease',
                     position: 'relative',
@@ -559,7 +583,7 @@ function App() {
       <nav style={{
         backgroundColor: '#ffffff',
         color: '#1f2937',
-        padding: '1rem 2rem',
+        padding: '1rem',
         borderBottom: '1px solid #e5e7eb',
         boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
         position: 'sticky',
@@ -570,17 +594,55 @@ function App() {
           <h1 
             style={{ 
               margin: 0, 
-              fontSize: '1.4rem', 
+              fontSize: windowWidth < 640 ? '1.1rem' : '1.4rem',
               fontWeight: '600', 
               cursor: 'pointer',
               color: '#1f2937',
-              letterSpacing: '-0.025em'
+              letterSpacing: '-0.025em',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis'
             }}
             onClick={() => setCurrentPage('home')}
           >
-            Veredas del Cedro
+            {windowWidth < 640 ? 'Veredas' : 'Veredas del Cedro'}
           </h1>
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+          
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            style={{
+              display: windowWidth < 768 ? 'flex' : 'none',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '0.5rem',
+              borderRadius: '6px',
+              color: '#6b7280'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = '#f9fafb'
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = 'transparent'
+            }}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+
+          {/* Desktop Navigation */}
+          <div style={{ 
+            display: windowWidth >= 768 ? 'flex' : 'none',
+            gap: '0.25rem',
+            flexWrap: 'wrap',
+            justifyContent: 'flex-end'
+          }}>
             {navigation.map((item) => (
               <button
                 key={item.id}
@@ -590,12 +652,63 @@ function App() {
                   color: currentPage === item.id ? '#1f2937' : '#6b7280',
                   border: 'none',
                   borderRadius: '8px',
-                  padding: '0.5rem 1rem',
+                  padding: '0.5rem 0.75rem',
                   cursor: 'pointer',
                   fontSize: '0.875rem',
                   fontWeight: currentPage === item.id ? '600' : '500',
                   transition: 'all 0.2s ease',
-                  position: 'relative'
+                  whiteSpace: 'nowrap'
+                }}
+                onMouseEnter={(e) => {
+                  if (currentPage !== item.id) {
+                    e.target.style.backgroundColor = '#f9fafb'
+                    e.target.style.color = '#374151'
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (currentPage !== item.id) {
+                    e.target.style.backgroundColor = 'transparent'
+                    e.target.style.color = '#6b7280'
+                  }
+                }}
+              >
+                {item.title}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile Navigation Menu */}
+        <div style={{
+          display: (windowWidth < 768 && isMobileMenuOpen) ? 'block' : 'none',
+          marginTop: '1rem',
+          paddingTop: '1rem',
+          borderTop: '1px solid #e5e7eb'
+        }}>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.5rem'
+          }}>
+            {navigation.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => {
+                  setCurrentPage(item.id)
+                  setIsMobileMenuOpen(false)
+                }}
+                style={{
+                  backgroundColor: currentPage === item.id ? '#f3f4f6' : 'transparent',
+                  color: currentPage === item.id ? '#1f2937' : '#6b7280',
+                  border: 'none',
+                  borderRadius: '8px',
+                  padding: '0.75rem 1rem',
+                  cursor: 'pointer',
+                  fontSize: '0.9rem',
+                  fontWeight: currentPage === item.id ? '600' : '500',
+                  transition: 'all 0.2s ease',
+                  textAlign: 'left',
+                  width: '100%'
                 }}
                 onMouseEnter={(e) => {
                   if (currentPage !== item.id) {
@@ -617,7 +730,12 @@ function App() {
         </div>
       </nav>
       
-      <main style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto', paddingBottom: '80px' }}>
+      <main style={{ 
+        padding: windowWidth < 640 ? '1rem' : '2rem', 
+        maxWidth: '1200px', 
+        margin: '0 auto', 
+        paddingBottom: '80px' 
+      }}>
         {renderPage()}
       </main>
       
@@ -628,13 +746,17 @@ function App() {
         right: 0,
         backgroundColor: '#1f2937',
         color: '#e5e7eb',
-        padding: '1rem',
+        padding: windowWidth < 640 ? '0.75rem' : '1rem',
         textAlign: 'center',
         borderTop: '1px solid #374151',
         boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.1)',
         zIndex: 1000
       }}>
-        <p style={{ margin: 0, fontSize: '0.9rem', fontWeight: '400' }}>
+        <p style={{ 
+          margin: 0, 
+          fontSize: windowWidth < 640 ? '0.8rem' : '0.9rem', 
+          fontWeight: '400' 
+        }}>
           © 2025 Condominio Veredas del Cedro
         </p>
       </footer>
