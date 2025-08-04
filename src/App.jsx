@@ -373,7 +373,7 @@ function App() {
             <div style={{ color: '#6b7280', lineHeight: '1.6' }}>
               <div style={{ backgroundColor: '#fef2f2', border: '1px solid #fca5a5', borderRadius: '8px', padding: '1rem', marginBottom: '1.5rem' }}>
                 <h3 style={{ color: '#dc2626', fontSize: '1.2rem', margin: '0 0 0.5rem 0' }}>🚨 Contactos de Emergencia</h3>
-                <p style={{ color: '#7f1d1d', margin: 0 }}>Bomberos/Policía/Médicos: 911<br />Seguridad: (555) 123-4569</p>
+                <p style={{ color: '#7f1d1d', margin: 0 }}>Bomberos/Policía/Cruz Roja: 911<br />Seguridad: (506) 2211-6364</p>
               </div>
               <h3 style={{ color: '#374151', fontSize: '1.3rem', marginBottom: '1rem' }}>Procedimientos de Seguridad</h3>
               <ul style={{ paddingLeft: '1.5rem' }}>
@@ -397,10 +397,10 @@ function App() {
               gap: windowWidth < 640 ? '1rem' : '1rem' 
             }}>
               {[
-                { title: 'Oficina del Condominio', phone: '(555) 123-4568', hours: 'Lun-Vie 9AM-5PM' },
-                { title: 'Seguridad de Emergencia', phone: '(555) 123-4569', hours: '24/7' },
-                { title: 'Mantenimiento', phone: '(555) 123-4572', hours: 'Lun-Vie 8AM-5PM' },
-                { title: 'Piscina y Recreación', phone: '(555) 123-4575', hours: 'Diario 6AM-10PM' }
+                { title: 'Administración del Condominio', phone: '(506) 8820-3602', hours: 'Lun-Vie 9AM-5PM' },
+                { title: 'Junta Directiva', phone: '(506) 7294-2280', hours: '24/7' },
+                { title: 'Seguridad (ADT)', phone: '(506) 2211-6364', hours: '24/7' },
+                { title: 'Mantenimiento', phone: '(506) 123-4575', hours: 'Lun-Vie 9AM-5PM' }
               ].map((contact, index) => (
                 <div key={index} style={{ backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '1rem' }}>
                   <h3 style={{ color: '#1e293b', fontSize: '1.1rem', marginBottom: '0.5rem' }}>{contact.title}</h3>
