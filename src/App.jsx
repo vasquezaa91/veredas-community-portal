@@ -20,7 +20,7 @@ const AIAssistantPage = () => {
     {
       id: 1,
       type: 'assistant',
-      content: '¡Hola! Soy tu Asistente de IA de la Comunidad Veredas. Puedo ayudarte con información sobre las reglas de la comunidad, eventos, instalaciones y preguntas generales. ¿En qué puedo asistirte hoy?',
+      content: '¡Hola! Soy tu Asistente de IA del Condominio Veredas del Cedro. Puedo ayudarte con información sobre las reglas del condominio, eventos, instalaciones y preguntas generales. ¿En qué puedo asistirte hoy?',
       timestamp: new Date().toLocaleTimeString()
     }
   ])
@@ -67,7 +67,7 @@ const AIAssistantPage = () => {
       const errorMessage = {
         id: messages.length + 2,
         type: 'assistant',
-        content: 'Me disculpo, pero estoy experimentando dificultades técnicas. Por favor intenta más tarde o contacta la oficina de la comunidad para asistencia.',
+        content: 'Me disculpo, pero estoy experimentando dificultades técnicas. Por favor intenta más tarde o contacta la oficina del condominio para asistencia.',
         timestamp: new Date().toLocaleTimeString(),
         source: 'error',
         isError: true
@@ -87,10 +87,10 @@ const AIAssistantPage = () => {
     <div style={{ backgroundColor: 'white', borderRadius: '8px', padding: '2rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
       <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
         <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#1f2937' }}>
-          🤖 Asistente AI de la Comunidad
+          🤖 Asistente AI del Condominio
         </h2>
         <p style={{ color: '#6b7280' }}>
-          Obtén respuestas instantáneas a tus preguntas sobre la comunidad
+          Obtén respuestas instantáneas a tus preguntas sobre el condominio
         </p>
       </div>
 
@@ -253,7 +253,7 @@ const AIAssistantPage = () => {
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
           onKeyPress={handleKeyPress}
-          placeholder="Pregúntame cualquier cosa sobre la comunidad..."
+          placeholder="Pregúntame cualquier cosa sobre el condominio..."
           style={{
             flex: 1,
             border: '1px solid #d1d5db',
@@ -315,7 +315,7 @@ const AIAssistantPage = () => {
             <strong>🚀 Características:</strong> Chat en tiempo real, contexto comunitario, respuestas de respaldo
           </p>
           <p style={{ margin: 0 }}>
-            <strong>🎯 Especialización:</strong> Asistencia de la Comunidad Veredas (reglas, amenidades, contactos, eventos)
+            <strong>🎯 Especialización:</strong> Asistencia del Condominio Veredas del Cedro (reglas, amenidades, contactos, eventos)
           </p>
         </div>
       </div>
@@ -327,11 +327,11 @@ function App() {
   const [currentPage, setCurrentPage] = useState('home')
 
   const navigation = [
-    { id: 'home', title: 'Inicio', desc: 'Resumen de la comunidad' },
-    { id: 'rules', title: 'Reglas de la Comunidad', desc: 'Normas y reglamentos' },
+    { id: 'home', title: 'Inicio', desc: 'Resumen del condominio' },
+    { id: 'rules', title: 'Reglas del Condominio', desc: 'Normas y reglamentos' },
     { id: 'protocols', title: 'Protocolos de Seguridad', desc: 'Procedimientos de emergencia' },
     { id: 'contacts', title: 'Directorio de Contactos', desc: 'Contactos importantes' },
-    { id: 'general', title: 'Información General', desc: 'Instalaciones de la comunidad' },
+    { id: 'general', title: 'Información General', desc: 'Instalaciones del condominio' },
     { id: 'events', title: 'Calendario de Eventos', desc: 'Próximos eventos' },
     { id: 'bookings', title: 'Reservas de Instalaciones', desc: 'Reservar amenidades' },
     { id: 'ai-assistant', title: 'Asistente AI', desc: 'Obtén ayuda y respuestas' }
@@ -347,13 +347,13 @@ function App() {
         return (
           <div style={{ backgroundColor: 'white', borderRadius: '8px', padding: '2rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
             <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#1f2937' }}>
-              📋 Reglas y Reglamentos de la Comunidad
+              📋 Reglas y Reglamentos del Condominio
             </h2>
             <div style={{ color: '#6b7280', lineHeight: '1.6' }}>
               <h3 style={{ color: '#374151', fontSize: '1.3rem', marginBottom: '1rem' }}>Normas Generales</h3>
               <ul style={{ marginBottom: '2rem', paddingLeft: '1.5rem' }}>
                 <li>Horas de silencio: 10 PM - 7 AM diariamente</li>
-                <li>Límite de velocidad: 25 km/h dentro de la comunidad</li>
+                <li>Límite de velocidad: 25 km/h dentro del condominio</li>
                 <li>Los visitantes deben registrarse en la entrada principal</li>
                 <li>Todos los vehículos deben tener registro vigente</li>
               </ul>
@@ -396,7 +396,7 @@ function App() {
             </h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
               {[
-                { title: 'Oficina de la Comunidad', phone: '(555) 123-4568', hours: 'Lun-Vie 9AM-5PM' },
+                { title: 'Oficina del Condominio', phone: '(555) 123-4568', hours: 'Lun-Vie 9AM-5PM' },
                 { title: 'Seguridad de Emergencia', phone: '(555) 123-4569', hours: '24/7' },
                 { title: 'Mantenimiento', phone: '(555) 123-4572', hours: 'Lun-Vie 8AM-5PM' },
                 { title: 'Piscina y Recreación', phone: '(555) 123-4575', hours: 'Diario 6AM-10PM' }
@@ -420,10 +420,10 @@ function App() {
             marginBottom: '2rem'
           }}>
             <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#1f2937' }}>
-              ¡Bienvenido a la Comunidad Veredas!
+              ¡Bienvenido al Condominio Veredas del Cedro!
             </h2>
             <p style={{ color: '#6b7280', marginBottom: '2rem' }}>
-              Tu portal comunitario para acceder a reglas, protocolos, contactos y más.
+              Tu portal del condominio para acceder a reglas, protocolos, contactos y más.
             </p>
             
             <div style={{
@@ -481,7 +481,7 @@ function App() {
             style={{ margin: 0, fontSize: '1.5rem', fontWeight: 'bold', cursor: 'pointer' }}
             onClick={() => setCurrentPage('home')}
           >
-            Portal de la Comunidad Veredas
+            Portal del Condominio Veredas del Cedro
           </h1>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             {navigation.map((item) => (

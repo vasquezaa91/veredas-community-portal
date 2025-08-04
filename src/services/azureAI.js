@@ -69,7 +69,7 @@ export const useAzureAI = () => {
     if (!isConfigured()) {
       log('Azure AI not configured, using fallback response');
       return {
-        content: "Lo siento, pero actualmente no puedo conectarme al servicio Azure AI. Por favor regresa más tarde o contacta al administrador de la comunidad para asistencia con tu pregunta sobre: " + message,
+        content: "Lo siento, pero actualmente no puedo conectarme al servicio Azure AI. Por favor regresa más tarde o contacta al administrador del condominio para asistencia con tu pregunta sobre: " + message,
         isError: true
       };
     }
@@ -226,7 +226,7 @@ export const useAzureAI = () => {
       
       // Return a helpful fallback message
       return {
-        content: `Me disculpo, pero actualmente estoy experimentando dificultades técnicas. Esto es lo que puedo ayudarte con respecto a "${message}": Por favor contacta la oficina de administración de la comunidad durante horas de trabajo para asistencia inmediata, o intenta hacer tu pregunta nuevamente en unos momentos.`,
+        content: `Me disculpo, pero actualmente estoy experimentando dificultades técnicas. Esto es lo que puedo ayudarte con respecto a "${message}": Por favor contacta la oficina de administración del condominio durante horas de trabajo para asistencia inmediata, o intenta hacer tu pregunta nuevamente en unos momentos.`,
         isError: true
       };
     } finally {
