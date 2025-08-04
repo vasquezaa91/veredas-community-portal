@@ -470,40 +470,56 @@ function App() {
       fontFamily: 'Arial, sans-serif'
     }}>
       <nav style={{
-        backgroundColor: '#1e3a8a',
-        color: 'white',
-        padding: '1rem'
+        backgroundColor: '#ffffff',
+        color: '#1f2937',
+        padding: '1rem 2rem',
+        borderBottom: '1px solid #e5e7eb',
+        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+        position: 'sticky',
+        top: 0,
+        zIndex: 100
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1200px', margin: '0 auto' }}>
           <h1 
-            style={{ margin: 0, fontSize: '1.5rem', fontWeight: 'bold', cursor: 'pointer' }}
+            style={{ 
+              margin: 0, 
+              fontSize: '1.4rem', 
+              fontWeight: '600', 
+              cursor: 'pointer',
+              color: '#1f2937',
+              letterSpacing: '-0.025em'
+            }}
             onClick={() => setCurrentPage('home')}
           >
-            Portal Informativo - Condominio Veredas del Cedro
+            Veredas del Cedro
           </h1>
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
             {navigation.map((item) => (
               <button
                 key={item.id}
                 onClick={() => setCurrentPage(item.id)}
                 style={{
-                  backgroundColor: currentPage === item.id ? '#3b82f6' : 'transparent',
-                  color: 'white',
-                  border: '1px solid #3b82f6',
-                  borderRadius: '4px',
+                  backgroundColor: currentPage === item.id ? '#f3f4f6' : 'transparent',
+                  color: currentPage === item.id ? '#1f2937' : '#6b7280',
+                  border: 'none',
+                  borderRadius: '8px',
                   padding: '0.5rem 1rem',
                   cursor: 'pointer',
-                  fontSize: '0.9rem',
-                  transition: 'all 0.2s'
+                  fontSize: '0.875rem',
+                  fontWeight: currentPage === item.id ? '600' : '500',
+                  transition: 'all 0.2s ease',
+                  position: 'relative'
                 }}
                 onMouseEnter={(e) => {
                   if (currentPage !== item.id) {
-                    e.target.style.backgroundColor = '#1e40af'
+                    e.target.style.backgroundColor = '#f9fafb'
+                    e.target.style.color = '#374151'
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (currentPage !== item.id) {
                     e.target.style.backgroundColor = 'transparent'
+                    e.target.style.color = '#6b7280'
                   }
                 }}
               >
