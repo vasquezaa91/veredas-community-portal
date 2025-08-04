@@ -331,8 +331,6 @@ function App() {
     { id: 'rules', title: 'Reglas del Condominio', desc: 'Normas y reglamentos' },
     { id: 'protocols', title: 'Protocolos de Seguridad', desc: 'Procedimientos de emergencia' },
     { id: 'contacts', title: 'Directorio de Contactos', desc: 'Contactos importantes' },
-    { id: 'general', title: 'Información General', desc: 'Instalaciones del condominio' },
-    { id: 'events', title: 'Calendario de Eventos', desc: 'Próximos eventos' },
     { id: 'bookings', title: 'Reservas de Instalaciones', desc: 'Reservar amenidades' },
     { id: 'ai-assistant', title: 'Asistente AI', desc: 'Obtén ayuda y respuestas' }
   ]
@@ -481,7 +479,7 @@ function App() {
             style={{ margin: 0, fontSize: '1.5rem', fontWeight: 'bold', cursor: 'pointer' }}
             onClick={() => setCurrentPage('home')}
           >
-            Portal del Condominio Veredas del Cedro
+            Portal Informativo - Condominio Veredas del Cedro
           </h1>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             {navigation.map((item) => (
@@ -516,22 +514,27 @@ function App() {
         </div>
       </nav>
       
-      <main style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
+      <main style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto', paddingBottom: '80px' }}>
         {renderPage()}
-        
-        <div style={{
-          backgroundColor: '#10b981',
-          color: 'white',
-          padding: '1rem',
-          borderRadius: '8px',
-          textAlign: 'center',
-          marginTop: '2rem'
-        }}>
-          <p style={{ margin: 0 }}>
-            ✅ Compatible con Node.js v21.1.0 • IA Integrada • Navegación Completa
-          </p>
-        </div>
       </main>
+      
+      <footer style={{
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: '#1f2937',
+        color: '#e5e7eb',
+        padding: '1rem',
+        textAlign: 'center',
+        borderTop: '1px solid #374151',
+        boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.1)',
+        zIndex: 1000
+      }}>
+        <p style={{ margin: 0, fontSize: '0.9rem', fontWeight: '400' }}>
+          © 2025 Condominio Veredas del Cedro
+        </p>
+      </footer>
     </div>
   )
 }
