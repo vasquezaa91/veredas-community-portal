@@ -24,35 +24,7 @@ const BookingsPage = ({ windowWidth }) => {
       icon: '🏢',
       description: 'Espacio para eventos y celebraciones',
       capacity: '50 personas',
-      price: '₡25,000 por día',
       availability: ['morning', 'afternoon', 'evening', 'full-day']
-    },
-    {
-      id: 'pool',
-      name: 'Área de Piscina',
-      icon: '🏊',
-      description: 'Piscina y área recreativa',
-      capacity: '30 personas',
-      price: '₡15,000 por medio día',
-      availability: ['morning', 'afternoon']
-    },
-    {
-      id: 'tennis',
-      name: 'Cancha de Tenis',
-      icon: '🎾',
-      description: 'Cancha de tenis con iluminación',
-      capacity: '4 jugadores',
-      price: '₡5,000 por hora',
-      availability: ['morning', 'afternoon', 'evening']
-    },
-    {
-      id: 'gym',
-      name: 'Gimnasio',
-      icon: '💪',
-      description: 'Gimnasio completamente equipado',
-      capacity: '15 personas',
-      price: '₡8,000 por medio día',
-      availability: ['morning', 'afternoon', 'evening']
     }
   ]
 
@@ -109,12 +81,12 @@ const BookingsPage = ({ windowWidth }) => {
       },
       {
         id: '2',
-        facility: 'pool',
+        facility: 'rancho',
         date: dateStr,
-        timeSlot: 'morning',
+        timeSlot: 'evening',
         residentName: 'María González',
         residentUnit: 'Casa 8',
-        status: 'confirmed'
+        status: 'pending'
       }
     ].filter(r => r.facility === facility && r.date === dateStr)
   }
@@ -195,61 +167,42 @@ const BookingsPage = ({ windowWidth }) => {
       {/* Facility Selection */}
       <div style={{ marginBottom: '2rem' }}>
         <h3 style={{ fontSize: '1.2rem', fontWeight: '600', marginBottom: '1rem', color: '#374151' }}>
-          Seleccionar Instalación
+          Instalación Disponible
         </h3>
         <div style={{
-          display: 'grid',
-          gridTemplateColumns: windowWidth < 640 ? '1fr' : windowWidth < 768 ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)',
-          gap: '1rem'
+          display: 'flex',
+          justifyContent: 'center',
+          marginBottom: '1rem'
         }}>
           {facilities.map((facility) => (
             <div
               key={facility.id}
-              onClick={() => setSelectedFacility(facility.id)}
               style={{
-                padding: '1rem',
-                border: selectedFacility === facility.id ? '2px solid #3b82f6' : '1px solid #e5e7eb',
-                borderRadius: '8px',
-                cursor: 'pointer',
-                backgroundColor: selectedFacility === facility.id ? '#eff6ff' : '#ffffff',
-                transition: 'all 0.2s ease'
+                padding: '1.5rem',
+                border: '2px solid #3b82f6',
+                borderRadius: '12px',
+                backgroundColor: '#eff6ff',
+                maxWidth: '300px',
+                textAlign: 'center',
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
               }}
             >
-              <div style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '0.5rem' }}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>
                 {facility.icon}
               </div>
-              <h4 style={{ fontSize: '0.9rem', fontWeight: '600', color: '#1f2937', marginBottom: '0.25rem', textAlign: 'center' }}>
+              <h4 style={{ fontSize: '1.2rem', fontWeight: '600', color: '#1f2937', marginBottom: '0.5rem' }}>
                 {facility.name}
               </h4>
-              <p style={{ fontSize: '0.75rem', color: '#6b7280', textAlign: 'center', margin: 0 }}>
-                {facility.capacity}
+              <p style={{ fontSize: '0.9rem', color: '#6b7280', marginBottom: '0.5rem' }}>
+                {facility.description}
               </p>
+              <div style={{ fontSize: '0.85rem', color: '#64748b' }}>
+                <p style={{ margin: '0.25rem 0' }}><strong>Capacidad:</strong> {facility.capacity}</p>
+              </div>
             </div>
           ))}
         </div>
       </div>
-
-      {/* Selected Facility Info */}
-      {selectedFacilityData && (
-        <div style={{ 
-          backgroundColor: '#f8fafc', 
-          border: '1px solid #e2e8f0', 
-          borderRadius: '8px', 
-          padding: '1rem', 
-          marginBottom: '2rem' 
-        }}>
-          <h4 style={{ fontSize: '1.1rem', fontWeight: '600', color: '#1e293b', marginBottom: '0.5rem' }}>
-            {selectedFacilityData.icon} {selectedFacilityData.name}
-          </h4>
-          <p style={{ color: '#475569', fontSize: '0.9rem', marginBottom: '0.5rem' }}>
-            {selectedFacilityData.description}
-          </p>
-          <div style={{ display: 'flex', gap: '1rem', fontSize: '0.85rem', color: '#64748b' }}>
-            <span><strong>Capacidad:</strong> {selectedFacilityData.capacity}</span>
-            <span><strong>Precio:</strong> {selectedFacilityData.price}</span>
-          </div>
-        </div>
-      )}
 
       {/* Calendar and Time Slots */}
       <div style={{ 
@@ -630,22 +583,6 @@ const BookingsPage = ({ windowWidth }) => {
           <li>El pago debe realizarse al momento de confirmar la reserva</li>
           <li>Las cancelaciones deben hacerse con 48 horas de anticipación</li>
         </ul>
-      </div>
-
-      {/* Azure Integration Note */}
-      <div style={{
-        marginTop: '1rem',
-        padding: '1rem',
-        backgroundColor: '#f0fdf4',
-        border: '1px solid #bbf7d0',
-        borderRadius: '8px'
-      }}>
-        <h4 style={{ fontSize: '0.9rem', fontWeight: '600', color: '#166534', marginBottom: '0.5rem' }}>
-          🔗 Preparado para Azure
-        </h4>
-        <p style={{ fontSize: '0.8rem', color: '#166534', margin: 0 }}>
-          Este sistema está listo para conectarse con una base de datos Azure para reservas en tiempo real.
-        </p>
       </div>
     </div>
   )
