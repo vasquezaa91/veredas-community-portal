@@ -580,9 +580,25 @@ const BookingsPage = ({ windowWidth }) => {
         <ul style={{ fontSize: '0.85rem', color: '#1e40af', margin: 0, paddingLeft: '1.5rem' }}>
           <li>Las reservas deben realizarse con al menos 24 horas de anticipación</li>
           <li>Todas las reservas están sujetas a confirmación por la administración</li>
-          <li>El pago debe realizarse al momento de confirmar la reserva</li>
+          <li>Las reservas son gratuitas para todos los residentes</li>
           <li>Las cancelaciones deben hacerse con 48 horas de anticipación</li>
         </ul>
+      </div>
+
+        {/* Support Note */}
+      <div style={{
+        marginTop: '1rem',
+        padding: '1rem',
+        backgroundColor: '#f0fdf4',
+        border: '1px solid #bbf7d0',
+        borderRadius: '8px'
+      }}>
+        <h4 style={{ fontSize: '0.9rem', fontWeight: '600', color: '#166534', marginBottom: '0.5rem' }}>
+          🔗 Soporte
+        </h4>
+        <p style={{ fontSize: '0.8rem', color: '#166534', margin: 0 }}>
+          Si tiene alguna duda o problema con las reservas, no dude en contactarnos al (506) 7294-2280.
+        </p>
       </div>
     </div>
   )
