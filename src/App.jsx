@@ -4,6 +4,7 @@ import RulesPage from './components/RulesPage'
 import ProtocolsPage from './components/ProtocolsPage'
 import ContactsPage from './components/ContactsPage'
 import HomePage from './components/HomePage'
+import BookingsPage from './components/BookingsPage'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home')
@@ -43,6 +44,8 @@ function App() {
         return <ProtocolsPage windowWidth={windowWidth} />
       case 'contacts':
         return <ContactsPage windowWidth={windowWidth} />
+      case 'bookings':
+        return <BookingsPage windowWidth={windowWidth} />
       default:
         return <HomePage windowWidth={windowWidth} navigation={navigation} setCurrentPage={setCurrentPage} />
     }
