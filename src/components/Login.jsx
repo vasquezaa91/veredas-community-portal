@@ -39,7 +39,7 @@ const Login = ({ windowWidth }) => {
       
       switch (error.code) {
         case 'auth/invalid-credential':
-          errorMessage = 'Credenciales inválidas. Esto puede deberse a:\n• Email o contraseña incorrectos\n• Configuración de Firebase incompleta\n• App ID de Firebase inválido'
+          errorMessage = 'Email o contraseña incorrectos. Por favor, verifica tus credenciales e intenta nuevamente.'
           break
         case 'auth/user-not-found':
           errorMessage = 'Usuario no encontrado'
