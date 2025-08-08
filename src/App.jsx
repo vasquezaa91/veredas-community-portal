@@ -4,7 +4,7 @@ import RulesPage from './components/RulesPage'
 import ProtocolsPage from './components/ProtocolsPage'
 import ContactsPage from './components/ContactsPage'
 import BookingsPage from './components/BookingsPage'
-import AssistantPage from './components/AssistantPage'
+import AIAssistantPage from './components/AIAssistantPage'
 import Login from './components/Login'
 import FirebaseTestComponent from './components/FirebaseTestComponent'
 import ErrorBoundary from './components/ErrorBoundary'
@@ -125,7 +125,7 @@ function AppContent() {
       case 'bookings':
         return <BookingsPage windowWidth={windowWidth} />
       case 'assistant':
-        return <AssistantPage windowWidth={windowWidth} />
+        return <AIAssistantPage windowWidth={windowWidth} />
       default:
         return <HomePage windowWidth={windowWidth} navigation={navigation} setCurrentPage={setCurrentPage} />
     }

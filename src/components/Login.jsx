@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import FirebaseDiagnostic from './FirebaseDiagnostic'
 
 const Login = ({ windowWidth }) => {
   const [email, setEmail] = useState('')
@@ -113,13 +112,6 @@ const Login = ({ windowWidth }) => {
       justifyContent: 'center',
       padding: windowWidth < 640 ? '1rem' : '2rem'
     }}>
-      {/* Firebase Diagnostic Tool - Development Only */}
-      {import.meta.env.DEV && (
-        <div style={{ width: '100%', maxWidth: '800px', marginBottom: '2rem' }}>
-          <FirebaseDiagnostic windowWidth={windowWidth} />
-        </div>
-      )}
-
       <div style={{
         backgroundColor: 'white',
         borderRadius: '12px',
